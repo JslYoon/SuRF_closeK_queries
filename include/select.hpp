@@ -32,6 +32,7 @@ public:
     // posistion is zero-based; rank is one-based.
     // E.g., for bitvector: 100101000, select(3) = 5
     position_t select(position_t rank) const {
+	std::cout << "this is rank:" << rank << " and this is num_ones:" << num_ones_ << std::endl;
 	assert(rank > 0);
 	assert(rank <= num_ones_ + 1);
 	position_t lut_idx = rank / sample_interval_;

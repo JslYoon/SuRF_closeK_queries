@@ -7,13 +7,14 @@ using namespace surf;
 
 int main() {
     std::vector<std::string> keys = {
-	"f",
-	"far",
-	"fast",
-	"s",
-	"top",
-	"toy",
-	"trie",
+	"15",
+	"10",
+	"6",
+	"5",
+	"4",
+	"3",
+	"2",
+    "1"
     };
 
     // basic surf
@@ -28,39 +29,39 @@ int main() {
 
     //----------------------------------------
     // point queries
-    //----------------------------------------
-    std::cout << "Point Query Example: fase" << std::endl;
+    // //----------------------------------------
+    // std::cout << "Point Query Example: fase" << std::endl;
     
-    std::string key = "fase";
+    // std::string key = "fase";
     
-    if (surf->lookupKey(key))
-	std::cout << "False Positive: "<< key << " found in basic SuRF" << std::endl;
-    else
-	std::cout << "Correct: " << key << " NOT found in basic SuRF" << std::endl;
+    // if (surf->lookupKey(key))
+	// std::cout << "False Positive: "<< key << " found in basic SuRF" << std::endl;
+    // else
+	// std::cout << "Correct: " << key << " NOT found in basic SuRF" << std::endl;
 
-    if (surf_hash->lookupKey(key))
-	std::cout << "False Positive: " << key << " found in SuRF hash" << std::endl;
-    else
-	std::cout << "Correct: " << key << " NOT found in SuRF hash" << std::endl;
+    // if (surf_hash->lookupKey(key))
+	// std::cout << "False Positive: " << key << " found in SuRF hash" << std::endl;
+    // else
+	// std::cout << "Correct: " << key << " NOT found in SuRF hash" << std::endl;
 
-    if (surf_real->lookupKey(key))
-	std::cout << "False Positive: " << key << " found in SuRF real" << std::endl;
-    else
-	std::cout << "Correct: " << key << " NOT found in SuRF real" << std::endl;
+    // if (surf_real->lookupKey(key))
+	// std::cout << "False Positive: " << key << " found in SuRF real" << std::endl;
+    // else
+	// std::cout << "Correct: " << key << " NOT found in SuRF real" << std::endl;
 
-    if (surf_mixed->lookupKey(key))
-	std::cout << "False Positive: " << key << " found in SuRF mixed" << std::endl;
-    else
-	std::cout << "Correct: " << key << " NOT found in SuRF mixed" << std::endl;
+    // if (surf_mixed->lookupKey(key))
+	// std::cout << "False Positive: " << key << " found in SuRF mixed" << std::endl;
+    // else
+	// std::cout << "Correct: " << key << " NOT found in SuRF mixed" << std::endl;
 
     //----------------------------------------
     // range queries
     //----------------------------------------
     std::cout << "\nRange Query Example: [fare, fase)" << std::endl;
     
-    std::string left_key = "fare";
-    std::string right_key = "fase";
-
+    std::string left_key = "12";
+    std::string right_key = "16";
+    
     if (surf->lookupRange(left_key, true, right_key, false))
 	std::cout << "False Positive: There exist key(s) within range ["
 		  << left_key << ", " << right_key << ") " << "according to basic SuRF" << std::endl;
@@ -68,26 +69,26 @@ int main() {
 	std::cout << "Correct: No key exists within range ["
 		  << left_key << ", " << right_key << ") " << "according to basic SuRF" << std::endl;
 
-    if (surf_hash->lookupRange(left_key, true, right_key, false))
-	std::cout << "False Positive: There exist key(s) within range ["
-		  << left_key << ", " << right_key << ") " << "according to SuRF hash" << std::endl;
-    else
-	std::cout << "Correct: No key exists within range ["
-		  << left_key << ", " << right_key << ") " << "according to SuRF hash" << std::endl;
+    // if (surf_hash->lookupRange(left_key, true, right_key, false))
+	// std::cout << "False Positive: There exist key(s) within range ["
+	// 	  << left_key << ", " << right_key << ") " << "according to SuRF hash" << std::endl;
+    // else
+	// std::cout << "Correct: No key exists within range ["
+	// 	  << left_key << ", " << right_key << ") " << "according to SuRF hash" << std::endl;
 
-    if (surf_real->lookupRange(left_key, true, right_key, false))
-	std::cout << "False Positive: There exist key(s) within range ["
-		  << left_key << ", " << right_key << ") " << "according to SuRF real" << std::endl;
-    else
-	std::cout << "Correct: No key exists within range ["
-		  << left_key << ", " << right_key << ") " << "according to SuRF real" << std::endl;
+    // if (surf_real->lookupRange(left_key, true, right_key, false))
+	// std::cout << "False Positive: There exist key(s) within range ["
+	// 	  << left_key << ", " << right_key << ") " << "according to SuRF real" << std::endl;
+    // else
+	// std::cout << "Correct: No key exists within range ["
+	// 	  << left_key << ", " << right_key << ") " << "according to SuRF real" << std::endl;
 
-    if (surf_mixed->lookupRange(left_key, true, right_key, false))
-	std::cout << "False Positive: There exist key(s) within range ["
-		  << left_key << ", " << right_key << ") " << "according to SuRF mixed" << std::endl;
-    else
-	std::cout << "Correct: No key exists within range ["
-		  << left_key << ", " << right_key << ") " << "according to SuRF mixed" << std::endl;
+    // if (surf_mixed->lookupRange(left_key, true, right_key, false))
+	// std::cout << "False Positive: There exist key(s) within range ["
+	// 	  << left_key << ", " << right_key << ") " << "according to SuRF mixed" << std::endl;
+    // else
+	// std::cout << "Correct: No key exists within range ["
+	// 	  << left_key << ", " << right_key << ") " << "according to SuRF mixed" << std::endl;
 
     return 0;
 }
