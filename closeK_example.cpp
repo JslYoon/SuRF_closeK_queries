@@ -168,15 +168,16 @@ void test_surf(uint64_t batch_size, string key_distribution, string query_distri
   // Sort v_keys for faster verification of false positiviry
   vector<uint64_t> sorted_v_keys = v_keys_temp;
   sort(sorted_v_keys.begin(), sorted_v_keys.end());
-  std::vector<std::string> keys = intsToStrings(sorted_v_keys);
+
+  std::vector<std::string> keyz = intsToStrings(sorted_v_keys);
   
   //----------------------------------------
   //SuRF CONSTRUCTION
   //---------------------------------------- 
-  for(int i = 0; i < keys.size(); i++) {
-    cout << "asfd " << keys[i] << endl;
-  }
-  SuRF* surf = new SuRF(keys);
+//   for(int i = 0; i < keys.size(); i++) {
+//     cout << "asfd " << keys[i] << endl;
+//   }
+  SuRF* surf = new SuRF(keyz);
 
   //----------------------------------------
   //BUILDING WORKLOAD
@@ -211,7 +212,7 @@ void test_surf(uint64_t batch_size, string key_distribution, string query_distri
       uint64_t upper_bound = lower_bound + rq_ranges[i];
     //   cout << "lower bound: " << intToString(lower_bound) << " upper bound: " << intToString(upper_bound) << endl;
 
-      if(surf->lookupRange(intToString(lower_bound), true, intToString(upper_bound), true)) {
+      if(surf->lookupRange(intToString(lower_bound), true, intToString(upper_bound), false)) {
         if(find_key_in(sorted_v_keys, lower_bound, upper_bound)) {
           tp++;
         } else {
@@ -240,7 +241,7 @@ void test_surf(uint64_t batch_size, string key_distribution, string query_distri
     for(int j = 0; j < sorted_v_keys.size(); j++) {
       uint64_t lower_bound = sorted_v_keys[j] + TEST_NUM;
       uint64_t upper_bound = lower_bound + rq_ranges[i];
-      if(surf->lookupRange(intToString(lower_bound), true, intToString(upper_bound), true)) {
+      if(surf->lookupRange(intToString(lower_bound), true, intToString(upper_bound), false)) {
 
         if(find_key_in(sorted_v_keys, lower_bound, upper_bound)) {
           tp++;

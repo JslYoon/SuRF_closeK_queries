@@ -224,9 +224,11 @@ bool SuRF::lookupRange(const std::string& left_key, const bool left_inclusive,
 		       const std::string& right_key, const bool right_inclusive) {
     iter_.clear();
     louds_dense_->moveToKeyGreaterThan(left_key, left_inclusive, iter_.dense_iter_);
+    // std::cout << " is here " << iter_.dense_iter_.getSendOutNodeNum() << std::endl;
     if (!iter_.dense_iter_.isValid()) return false;
     if (!iter_.dense_iter_.isComplete()) {
 	if (!iter_.dense_iter_.isSearchComplete()) {
+
 	    iter_.passToSparse();
 	    louds_sparse_->moveToKeyGreaterThan(left_key, left_inclusive, iter_.sparse_iter_);
 	    if (!iter_.sparse_iter_.isValid()) {
@@ -340,6 +342,7 @@ std::string SuRF::Iter::getKeyWithSuffix(unsigned* bitlen) const {
 }
 
 void SuRF::Iter::passToSparse() {
+    // std::cout << "why here" << dense_iter_.getSendOutNodeNum() << std::endl;
     sparse_iter_.setStartNodeNum(dense_iter_.getSendOutNodeNum());
 }
 

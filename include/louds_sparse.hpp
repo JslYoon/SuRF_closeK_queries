@@ -228,6 +228,7 @@ LoudsSparse::LoudsSparse(const SuRFBuilder* builder) {
 
 bool LoudsSparse::lookupKey(const std::string& key, const position_t in_node_num) const {
     position_t node_num = in_node_num;
+
     position_t pos = getFirstLabelPos(node_num);
     level_t level = 0;
     for (level = start_level_; level < key.length(); level++) {
@@ -297,6 +298,7 @@ position_t LoudsSparse::appendToPosList(std::vector<position_t>& pos_list,
 					const position_t node_num,
 					const level_t level,
 					const bool isLeft, bool& done) const {
+
     position_t pos = getFirstLabelPos(node_num);
     if (pos > level_cuts_[start_level_ + level]) {
 	pos = kMaxPos;
@@ -423,13 +425,15 @@ position_t LoudsSparse::getChildNodeNum(const position_t pos) const {
 }
 
 position_t LoudsSparse::getFirstLabelPos(const position_t node_num) const {
-    return louds_bits_->select(node_num + 1 - node_count_dense_);
+	// std::cout << "ehehehe" << node_num << "   " << node_count_dense_ << "   " << (node_num - node_count_dense_) << std::endl;
+    return louds_bits_->select(node_num + 4001 - node_count_dense_);
 }
 
 position_t LoudsSparse::getLastLabelPos(const position_t node_num) const {
     position_t next_rank = node_num + 2 - node_count_dense_;
     if (next_rank > louds_bits_->numOnes())
 	return (louds_bits_->numBits() - 1);
+
     return (louds_bits_->select(next_rank) - 1);
 }
 
@@ -568,6 +572,7 @@ void LoudsSparse::Iter::setToLastLabelInRoot() {
 
 void LoudsSparse::Iter::moveToLeftMostKey() {
     if (key_len_ == 0) {
+		
 	position_t pos = trie_->getFirstLabelPos(start_node_num_);
 	label_t label = trie_->labels_->read(pos);
 	append(label, pos);
